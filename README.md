@@ -1,42 +1,31 @@
-# GPSImage Library
+# GPSImage Library by Dronemapp
 
-Retrieves GPS data from Geo-referenced Photos.
+[![CircleCI](https://circleci.com/gh/DroneMapp/gpsimage.svg?style=svg)](https://circleci.com/gh/DroneMapp/gpsimage)
 
-GPS Image will find all available geo-referenced information from the image.
+Based on the work of ![Denis Carriere](https://github.com/DenisCarriere/)
+on his ![gpsimage](https://github.com/DenisCarriere/gpsimage) library.
 
-Every task made easy! 
+Retrieves GPS data from geo-referenced images.
 
-![GPSImage](https://raw.githubusercontent.com/DenisCarriere/gpsimage/master/gpsimage/images/gpsimage.jpg)
 
 ## Install
 
-**Requires** PIL module installed, for issues with Windows try to download Pillow. 
-
 ```bash
-$ pip install gpsimage
+$ pip install dronemapp-gpsimage
 ```
-
-## GPS-Camera Devices
-
-The following GPS-Camera devices have been tested with this GPSImage python module.
-
-If your device is not listed, feel free to send me a photo taken from your device and I will be glad to troubleshoot it.
-
-- [Garmin Montana 650](http://sites.garmin.com/montana/)
-- [Android Samsung Galaxy](http://www.samsung.com/us/topic/our-galaxy-smartphones)
 
 ## Python Example
 
 ```python
->>> import gpsimage # pip install gpsimage
->>> img = gpsimage.open('<image.jpg>')
+>>> from dronemapp.gpsimage import GPSImageFromFile
+>>> img = GPSImageFromFile('your-image.jpg')
 
 # Coordinates Latitude & Longitude in Degrees 
->>> img.lat, img.lng
+>>> img.y, img.x
 45.413140 -75.656703
 
 # Altitude in Feet
->>> img.altitude
+>>> img.z
 142.04025779
 
 # From 0 to 360 Degrees
@@ -45,49 +34,23 @@ If your device is not listed, feel free to send me a photo taken from your devic
 ...
 ```
 
-## JSON Results
-
-This example was taken from a Android Samsung Galaxy
-
-```python
->>> import gpsimage # pip install gpsimage
->>> img = gpsimage.open('<image.jpg>')
->>> img.json
-
-# JSON Results
-{'altitude': 79.0,
-'datum': 'WGS-84',
-'direction': 321.0,
-'geometry': {'coordinates': [-76.4515263888889, 44.24509527777778],
-'type': 'POINT'},
-'height': 2592,
-'make': u'Samsung',
-'model': u'Galaxy Nexus',
-'status': 'OK',
-'timestamp': u'2014:08:06 15:29:41',
-'width': 1944}
-```
-
 ## Attributes
 
 ### GPS data
-- **lat** or **y** - Latitude (Degrees)
-- **lng** or **x** - Longitude (Degrees)
+- **y** - Latitude (Degrees)
+- **x** - Longitude (Degrees)
 - **geometry** - GeoJSON Point
-- **altitude** - Elevation Above Mean Sea Level
+- **z** - Elevation Above Mean Sea Level
 - **datum** - Coordinate system (Typically WGS84)
 - **direction** - Camera orientation (0-360 degrees)
-- **ok** - True or False if coordinates exists
+- **has_latlng** - True or False if planar coordinates exists
 
 ### Device Specific
-- **timestamp ** - Calendar dates (YYYY-MM-DD HH:MM:SS)
+- **timestamp** - Calendar dates (YYYY-MM-DD HH:MM:SS)
 - **model** - Device model (Galaxy Nexus)
-- **make** - Device manufacturer (Samsung)
+- **manufacturer** - Device manufacturer (Samsung)
 
 ### Standard
-- **status** - Checks if everything is ok
-- **width** - Dimension of image (Pixels)
-- **height** - Dimension of image (Pixels)
-
-## Functions
-- **debug** - Generates a report of all the attributes available
+- **width**
+- **height**
+- **dimensions**
