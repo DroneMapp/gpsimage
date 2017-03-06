@@ -1,6 +1,6 @@
 import pytest
 
-from dronemapp.gpsimage import GPSImage
+from gpsimage import GPSImage
 
 
 @pytest.fixture

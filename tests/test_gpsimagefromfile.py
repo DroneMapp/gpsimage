@@ -1,4 +1,4 @@
-from dronemapp.gpsimage import GPSImageFromFile
+from gpsimage import GPSImageFromFile
 
 
 def test_gpsimagefromfile(dji_image_path):
