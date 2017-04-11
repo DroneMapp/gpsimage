@@ -10,7 +10,7 @@ if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist --formats=gztar upload')
     sys.exit()
 
-version = '0.1.0'
+version = '0.1.1'
 requires = ['Pillow']
 
 with open('README.md') as f:
@@ -19,7 +19,7 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-    name='dronemapp-gpsimage',
+    name='gpsimage',
     version=version,
     description="Retrieves GPS data from geo-referenced images",
     long_description=readme,
